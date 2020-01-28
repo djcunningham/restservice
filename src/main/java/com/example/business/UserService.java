@@ -37,7 +37,7 @@ public class UserService implements IUserService {
           .map(e -> new UserModel(e.getUserName(),
                   e.getFirstName(),
                   e.getLastName(),
-                  e.getRoles().stream().map(r -> r.getName()).collect(Collectors.toList())
+                  e.getRoles().stream().map(RoleEntity::getName).collect(Collectors.toList())
                   ));
   }
 
@@ -59,7 +59,7 @@ public class UserService implements IUserService {
                     e.getUserName(),
                     e.getFirstName(),
                     e.getLastName(),
-                    e.getRoles().stream().map(r -> r.getName()).collect(Collectors.toList())))
+                    e.getRoles().stream().map(RoleEntity::getName).collect(Collectors.toList())))
             .collect(Collectors.toList());
   }
 
@@ -70,8 +70,8 @@ public class UserService implements IUserService {
             .getRoles()
             .stream()
             .map(r -> roleRepository.findByName(r))
-            .filter(r -> r.isPresent())
-            .map(r -> r.get())
+            .filter(Optional::isPresent)
+            .map(Optional::get)
             .collect(Collectors.toSet());
     entity.setRoles(roleEntities);
 
