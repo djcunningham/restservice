@@ -22,7 +22,7 @@ public class RoleRepositoryTests {
 
   @Test
   public void existByNameReturnsTrue() {
-    Boolean roleExists = this.roleRepository.existsByName(("Role1"));
+    Boolean roleExists = this.roleRepository.existsByName(("Admin"));
     assertThat(roleExists).isTrue();
   }
 

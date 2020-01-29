@@ -5,21 +5,19 @@ import com.example.data.IRoleRepository;
 import com.example.data.IUserRepository;
 import com.example.data.entity.RoleEntity;
 import com.example.data.entity.UserEntity;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-//Test comment for dev branch
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Transactional
 public class UserService implements IUserService {
 
   private final IUserRepository userRepository;
@@ -45,7 +43,11 @@ public class UserService implements IUserService {
   public Optional<UserModel> findUserByUserName(String userName) {
     return this.userRepository
       .findByUserName(userName)
-      .map(e -> new UserModel(e.getUserName(), e.getFirstName(), e.getLastName()));
+      .map(e -> new UserModel(
+              e.getUserName(),
+              e.getFirstName(),
+              e.getLastName(),
+              e.getRoles().stream().map(RoleEntity::getName).collect(Collectors.toList())));
   }
 
   @Override
@@ -64,6 +66,7 @@ public class UserService implements IUserService {
   }
 
   @Override
+  @Transactional
   public void createUser(UserModel userModel) {
     UserEntity entity = new UserEntity(userModel.getUserName(), userModel.getFirstName(), userModel.getLastName());
     Set<RoleEntity> roleEntities = userModel

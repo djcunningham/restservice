@@ -7,9 +7,9 @@ import java.util.Optional;
 public interface IUserService {
   Optional<UserModel> findUser(Integer id);
 
-  Optional<UserModel> findUserByUserName(String lastName);
+  Optional<UserModel> findUserByUserName(String userName);
 
-  Iterable<UserModel> findUserByLastName(String userName);
+  Iterable<UserModel> findUserByLastName(String lastName);
 
   void createUser(UserModel userModel);
 }
