@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @Api
 @Validated
 @Log
+@PreAuthorize("hasRole('admin')")
 public class UserController extends ValidatedController {
 
   private final IUserService userService;
@@ -54,7 +55,6 @@ public class UserController extends ValidatedController {
   }
 
   @GetMapping("/userByUserName")
-  @PreAuthorize("hasRole('admin')")
   @ApiOperation("Gets a user based on the provided Name")
   @ApiImplicitParams({
           @ApiImplicitParam(name = "userName",
