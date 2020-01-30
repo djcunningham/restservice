@@ -15,6 +15,7 @@ import javax.validation.constraints.Min;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.DataBinder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -53,6 +54,7 @@ public class UserController extends ValidatedController {
   }
 
   @GetMapping("/userByUserName")
+  @PreAuthorize("hasRole('admin')")
   @ApiOperation("Gets a user based on the provided Name")
   @ApiImplicitParams({
           @ApiImplicitParam(name = "userName",
