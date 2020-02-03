@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 @Api
 @Validated
 @Log
-@PreAuthorize("hasRole('admin')")
+@PreAuthorize("hasRole('Admin')")
 public class UserController extends ValidatedController {
 
   private final IUserService userService;
