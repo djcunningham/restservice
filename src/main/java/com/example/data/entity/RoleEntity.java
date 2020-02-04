@@ -10,7 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "[Role]")
+@Table(name = "[Role]",
+        indexes = { @Index(name = "IX_Role_Name", columnList = "Name", unique = true) }
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

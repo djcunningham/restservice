@@ -8,7 +8,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "[User]")
+@Table(name = "[User]",
+        indexes = {
+          @Index(name = "IX_User_UserName", columnList = "UserName", unique = true),
+          @Index(name = "IX_User_LastName", columnList = "LastName")
+        }
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
