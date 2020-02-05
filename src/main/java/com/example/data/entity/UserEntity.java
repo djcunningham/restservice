@@ -27,7 +27,7 @@ public class UserEntity {
   @Column(name="Id", unique = true, nullable = false)
   private Integer id;
 
-  @Column(name = "UserName", nullable = false, unique =  true, length = 255)
+  @Column(name = "UserName", nullable = false, unique =  true)
   @NonNull
   private String userName;
 
@@ -44,15 +44,10 @@ public class UserEntity {
           name = "UserRole",
           joinColumns = @JoinColumn(name = "UserId"),
           inverseJoinColumns = @JoinColumn(name = "RoleId"))
-  private Set<RoleEntity> roles = new HashSet<RoleEntity>();
+  private Set<RoleEntity> roles = new HashSet<>();
 
   public void addRole(RoleEntity roleEntity) {
     this.roles.add(roleEntity);
     roleEntity.getUsers().add(this);
-  }
-
-  @Override
-  public String toString(){
-    return String.format("%s %s", this.firstName, this.lastName);
   }
 }

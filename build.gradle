@@ -10,20 +10,26 @@ sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
+	jcenter() {
+		url "http://oss.jfrog.org/artifactory/oss-snapshot-local/"
+	}
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-test:2.2.4.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.2.4.RELEASE'
-	implementation 'io.springfox:springfox-swagger2:2.9.2'
-	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	implementation 'io.springfox:springfox-swagger2:3.0.0-SNAPSHOT'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT'
+	implementation 'io.springfox:springfox-data-rest:3.0.0-SNAPSHOT'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.4.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 	implementation 'org.hibernate.validator:hibernate-validator:6.1.1.Final'
 	implementation 'org.hibernate:hibernate-entitymanager:5.4.10.Final'
     implementation 'org.mockito:mockito-core:3.2.4'
 	implementation 'com.h2database:h2:1.4.200'
+	implementation 'org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE'
 	implementation('com.microsoft.sqlserver:mssql-jdbc'){
 		version {
 			strictly '7.4.1.jre11'
